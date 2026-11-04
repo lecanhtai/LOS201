@@ -1,0 +1,1 @@
+Perf hotspot: sensor_thread_func 45%

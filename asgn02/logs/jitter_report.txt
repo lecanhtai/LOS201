@@ -1,0 +1,1 @@
+Jitter report: Min=12us, Avg=25us, Max=85us, P99=65us
