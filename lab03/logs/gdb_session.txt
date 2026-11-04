@@ -1,0 +1,222 @@
+The target architecture is set to "arm".
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) [answered N; input not from terminal]
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+0x00010254 in _start ()
+Breakpoint 1 at 0x1040e: file buggy_app.c, line 26.
+Breakpoint 2 at 0x1035e: file buggy_app.c, line 6.
+Breakpoint 3 at 0x103a8: file buggy_app.c, line 14.
+Breakpoint 4 at 0x103de: file buggy_app.c, line 21.
+
+Breakpoint 1, main (argc=1, argv=0x407fffc4) at buggy_app.c:26
+26	int main(int argc, char *argv[]) {
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x0001040e in main at buggy_app.c:26
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x0001035e in process_data at buggy_app.c:6
+3       breakpoint     keep y   0x000103a8 in create_message at buggy_app.c:14
+4       breakpoint     keep y   0x000103de in calculate at buggy_app.c:21
+#0  main (argc=1, argv=0x407fffc4) at buggy_app.c:26
+arr = {306564, 1082130256, 1082135108, 92331600, 0}
+msg = 0x73734 <_dl_debug_mask> ""
+$1 = {306564, 1082130256, 1082135108, 92331600, 0}
+
+Breakpoint 2, process_data (data=0x407ffe40, len=5) at buggy_app.c:6
+6	    int sum = 0;
+#0  process_data (data=0x407ffe40, len=5) at buggy_app.c:6
+#1  0x00010450 in main (argc=1, argv=0x407fffc4) at buggy_app.c:30
+sum = 1082130372
+$2 = (int *) 0x407ffe54
+
+Breakpoint 3, create_message (text=0x491ac "Hello Embedded Linux") at buggy_app.c:14
+14	    char *buf = malloc(strlen(text) + 1);
+15	    strcpy(buf, text);
+16	    free(buf);
+17	    return buf;
+$3 = 0x75058 "u"
+0x75058:	"u"
+
+Breakpoint 4, calculate (a=100000, b=100000) at buggy_app.c:21
+21	    int result = a * b;
+22	    printf("calculate(%d, %d) = %d\n", a, b, result);
+result = 1410065408
+r0             0x186a0             100000
+r1             0x186a0             100000
+r2             0x186a0             100000
+r3             0x540be400          1410065408
+r4             0x407ffe50          1082130000
+r5             0x49208             299528
+r6             0x407fffc4          1082130372
+r7             0x407ffe18          1082129944
+r8             0x70010             458768
+r9             0x407fffcc          1082130380
+r10            0x2                 2
+r11            0x73700             472832
+r12            0x4                 4
+sp             0x407ffe18          0x407ffe18
+lr             0x10491             66705
+pc             0x103e8             0x103e8 <calculate+20>
+cpsr           0x60070030          1611071536
+fpscr          0x0                 0
+fpsid          0x41034070          1090732144
+fpexc          0x40000000          1073741824
+ID_MMFR1       0x40000000          1073741824
+ACTLR_EL2      0x0                 0
+ID_MMFR2       0x1260000           19267584
+PMCCNTR        0x0                 0
+HACTLR2        0x0                 0
+ID_MMFR3       0x2122211           34742801
+VSESR_EL2      0x0                 0
+ERRIDR_EL1     0x0                 0
+NSACR          0xc00               3072
+PMEVTYPER1     0x0                 0
+PMEVTYPER0     0x0                 0
+PMEVTYPER2     0x0                 0
+DBGCLAIMSET_EL1 0xff               255
+PMEVTYPER3     0x0                 0
+DBGBVR4_EL1    0x0                 0
+PMEVTYPER4     0x0                 0
+DBGBCR4_EL1    0x0                 0
+PMEVTYPER5     0x0                 0
+VDISR_EL2      0x0                 0
+RES_0_C0_C4_X  0x0                 0
+JIDR           0x0                 0
+RES_0_C0_C12_X 0x0                 0
+DBGVCR         0x0                 0
+JOSCR          0x0                 0
+RES_0_C0_C7_X  0x0                 0
+JMCR           0x0                 0
+PMCCFILTR      0x0                 0
+RES_0_C0_C15_X 0x0                 0
+PAR            0x0                 0
+MDCCINT_EL1    0x0                 0
+AFSR0_EL1      0x0                 0
+AFSR1_EL1      0x0                 0
+MDSCR_EL1      0x0                 0
+DBGBVR2_EL1    0x0                 0
+DBGBCR2_EL1    0x0                 0
+DBGWVR2_EL1    0x0                 0
+ID_ISAR0       0x2101110           34607376
+DBGWCR2_EL1    0x0                 0
+ID_ISAR1       0x13112111          319889681
+VBAR_EL1       0x0                 0
+ID_ISAR2       0x21232042          555950146
+AMAIR_EL1      0x0                 0
+RVBAR_EL1      0x0                 0
+ID_ISAR3       0x1112131           17899825
+RES_0_C0_C10_X 0x0                 0
+TTBR0          0x0                 0
+RMR_EL1        0x0                 0
+ID_ISAR4       0x11142             69954
+AMAIR1         0x0                 0
+ID_ISAR5       0x11011121          285282593
+ID_MMFR4       0x20021110          537006352
+DBGDTRTX       0x0                 0
+ID_ISAR6       0x1111111           17895697
+FCSEIDR        0x0                 0
+CONTEXTIDR_EL1 0x0                 0
+DBGCLAIMCLR_EL1 0x0                0
+TPIDRURW       0x0                 0
+DBGBVR5_EL1    0x0                 0
+TPIDRURO       0x74500             476416
+TTBR1          0x0                 0
+DBGBCR5_EL1    0x0                 0
+TPIDRPRW       0x0                 0
+PMUSERENR      0x0                 0
+RES_0_C0_C5_X  0x0                 0
+PMINTENSET     0x0                 0
+PMINTENCLR     0x0                 0
+PMOVSSET       0x0                 0
+RES_0_C0_C13_X 0x0                 0
+DBGDIDR        0x351ad000          890949632
+PMCEID2        0x0                 0
+PMEVCNTR0      0x0                 0
+PMCEID3        0x0                 0
+PMEVCNTR1      0x0                 0
+OSDTRRX_EL1    0x0                 0
+PMEVCNTR2      0x0                 0
+PMMIR_EL1      0x0                 0
+DBGBVR0_EL1    0x0                 0
+PMEVCNTR3      0x0                 0
+DBGBCR0_EL1    0x0                 0
+PMEVCNTR4      0x0                 0
+DBGWVR0_EL1    0x0                 0
+MIDR_EL1       0x411fd070          1092604016
+PMEVCNTR5      0x0                 0
+DBGWCR0_EL1    0x0                 0
+CTR            0x8444c004          -2075869180
+TCMTR          0x0                 0
+RES_0_C0_C8_X  0x0                 0
+TLBTR          0x0                 0
+MPIDR_EL1      0x80000000          -2147483648
+REVIDR_EL1     0x0                 0
+SCTLR_EL1      0xc50838            12912696
+MIDR           0x411fd070          1092604016
+ACTLR_EL1      0x0                 0
+CPACR_EL1      0xf00000            15728640
+OSDTRTX_EL1    0x0                 0
+CLIDR          0xa200023           169869347
+ACTLR2         0x0                 0
+DBGBVR3_EL1    0x0                 0
+DBGBCR3_EL1    0x0                 0
+TTBR0_EL1      0x0                 0
+DBGWVR3_EL1    0x0                 0
+PMCR           0x41013000          1090596864
+RES_0_C0_C3_0  0x0                 0
+TTBR1_EL1      0x0                 0
+PMCNTENSET     0x0                 0
+DBGWCR3_EL1    0x0                 0
+RES_0_C0_C3_1  0x0                 0
+TTBCR          0x0                 0
+PMCNTENCLR     0x0                 0
+RES_0_C0_C3_2  0x0                 0
+AIDR           0x0                 0
+DISR_EL1       0x0                 0
+RES_0_C0_C3_3  0x0                 0
+RES_0_C0_C11_X 0x0                 0
+CSSELR         0x0                 0
+OSDLR_EL1      0x0                 0
+ID_PFR2        0x11                17
+PMSELR         0x0                 0
+ID_DFR1        0x10                16
+DACR           0x0                 0
+CBAR           0x0                 0
+TTBCR2         0x0                 0
+PMCEID0        0x1                 1
+ID_MMFR5       0x2                 2
+PMOVSR         0x0                 0
+PMCEID1        0x10000018          268435480
+SDCR           0x0                 0
+RES_0_C0_C3_7  0x0                 0
+OSECCR_EL1     0x0                 0
+RES_0_C0_C6_X  0x0                 0
+RES_0_C0_C14_X 0x0                 0
+DBGDSCRint     0x0                 0
+DFSR           0x0                 0
+IFSR           0x0                 0
+DBGBVR1_EL1    0x0                 0
+DBGBCR1_EL1    0x0                 0
+DBGWVR1_EL1    0x0                 0
+ID_PFR0        0x11020131          285344049
+DBGDEVID2      0x0                 0
+DBGWCR1_EL1    0x0                 0
+ID_PFR1        0x10001             65537
+DBGDEVID1      0x2                 2
+ID_DFR0        0x600000a           100663306
+WFAR           0x0                 0
+DFAR           0x0                 0
+MAIR0          0x0                 0
+DBGDEVID       0x110f13            1117971
+RES_0_C0_C9_X  0x0                 0
+ID_AFR0        0x0                 0
+MAIR1          0x0                 0
+OSLSR_EL1      0xa                 10
+IFAR           0x0                 0
+ID_MMFR0       0x10101105          269488389
+pc             0x103e8             0x103e8 <calculate+20>
+sp             0x407ffe18          0x407ffe18
+lr             0x10491             66705
+[Inferior 1 (process 38452) exited normally]
