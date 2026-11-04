@@ -1,0 +1,1 @@
+Task 2 misc device test passed
