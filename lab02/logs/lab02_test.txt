@@ -1,0 +1,55 @@
+Boot completed! Welcome to Embedded Linux Lab 1
+
+Please press Enter to activate this console. input: ImExPS/2 Generic Explorer Mouse as /devices/platform/bus@40000000/bus@40000000:motherboard-bus@40000000/bus@40000000:motherboard-bus@40000000:iofpga@7,00000000/10007000.kmi/serio1/input/input2
+random: fast init done
+
+/ # dmesg -n 1
+/ # insmod /lib/modules/5.15.0/lab2_driver.ko
+/ # ls /dev/lab2 || mknod /dev/lab2 c 240 0
+ls: /dev/lab2: No such file or directory
+/ # 
+/ # echo first  > /dev/lab2
+/ # echo second > /dev/lab2
+/ # echo third  > /dev/lab2
+/ # cat /sys/class/lab2_class/lab2/overwrite_count
+2
+/ # cat /proc/lab2_info
+LAB-02 Driver Statistics
+========================
+Driver name     : lab2
+Major number    : 240
+Buffer size     : 1024 bytes
+Data length     : 6 bytes
+Open count      : 3
+Overwrites    : 2
+Last data       : [third
+]
+/ # 
+/ # printf "ABCDEFGH" > /dev/lab2
+/ # dd if=/dev/lab2 bs=1 skip=3 count=2 2>/dev/null
+DE/ # dd if=/dev/lab2 bs=1 skip=20 count=1
+0+0 records in
+0+0 records out
+0 bytes (0B) copied, 0.001191 seconds, 0B/s
+/ # 
+/ # printf "abc" > /dev/lab2
+/ # echo 1 > /sys/class/lab2_class/lab2/reverse_read
+/ # cat /dev/lab2
+cba/ # echo 0 > /sys/class/lab2_class/lab2/reverse_read
+/ # cat /dev/lab2
+abc/ # echo 2 > /sys/class/lab2_class/lab2/reverse_read
+sh: write error: Invalid argument
+/ # 
+/ # printf "zxc" > /dev/lab2
+/ # echo 1 > /sys/class/lab2_class/lab2/case_mode
+/ # cat /dev/lab2
+ZXC/ # echo 0 > /sys/class/lab2_class/lab2/case_mode
+/ # cat /dev/lab2
+zxc/ # 
+/ # rmmod lab2_driver
+/ # dmesg | tail
+lab2_driver: device opened (count=10)
+lab2_driver: received 3 bytes: [zxc]
+lab2_driver: device closed
+lab2_driver: device opened (count=11)
+lab2_driver: sent 3 byte
